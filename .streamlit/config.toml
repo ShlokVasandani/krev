@@ -1,0 +1,30 @@
+[theme]
+base = "light"
+primaryColor = "#1F6E66"
+backgroundColor = "#F4F1EA"
+secondaryBackgroundColor = "#FFFFFF"
+textColor = "#15302D"
+linkColor = "#1F6E66"
+linkUnderline = false
+font = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+headingFont = "Inter:https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+codeFont = "JetBrains Mono:https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+baseFontSize = 14
+baseRadius = "6px"
+buttonRadius = "6px"
+borderColor = "#DCD6C7"
+dataframeBorderColor = "#ECE8DE"
+dataframeHeaderBackgroundColor = "#F8F6F0"
+showWidgetBorder = true
+showSidebarBorder = true
+
+[theme.sidebar]
+backgroundColor = "#EDE9DF"
+secondaryBackgroundColor = "#FFFFFF"
+
+[client]
+toolbarMode = "minimal"
+showSidebarNavigation = false
+
+[browser]
+gatherUsageStats = false

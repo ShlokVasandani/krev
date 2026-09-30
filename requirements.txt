@@ -1,0 +1,7 @@
+streamlit>=1.40
+pydeck>=0.9
+plotly>=5.20
+numpy>=1.26
+pandas>=2.1
+scipy>=1.11
+google-genai>=1.0
