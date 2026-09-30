@@ -84,8 +84,11 @@ with st.sidebar:
     ui.sidebar_label("Map")
     item_sel = st.selectbox("Medicine shown on map", ["Worst across all medicines"] + [it.name for it in ITEMS])
     ui.sidebar_label("Integrations")
-    api_key = st.text_input("Gemini API key", type="password", value=os.environ.get("GEMINI_API_KEY", ""),
-                            help="Optional. Used only to write the plain-language action brief.")
+    server_key = bool(os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY"))
+    api_key = st.text_input("Gemini API key", type="password", value="",
+                            placeholder="Configured on server" if server_key else "Optional",
+                            help="Optional. Used only to write the plain-language action brief. "
+                                 "A key set on the server is used automatically and never shown here.")
     st.markdown('<div class="kv-side-foot">Synthetic network: 60 facilities across 12 districts in 3 states, '
                 'two years of daily history with state-specific dengue seasons and past outbreaks. '
                 'No real patient data.</div>', unsafe_allow_html=True)
@@ -401,7 +404,14 @@ with tabs[3]:
                f"Cold-start test: a state joins with only {DATA_POOR_HISTORY} days of its own data. Each model is "
                f"scored on that state's two earlier dengue seasons, which were withheld. Error is WAPE on the "
                f"14-day case forecast; lower is better.")
-    d = bench.set_index("state").loc[DATA_POOR_STATE]
+    fed_state = st.segmented_control("State joining late", list(bench.state), default=DATA_POOR_STATE,
+                                     key="fed_state") or DATA_POOR_STATE
+    d = bench.set_index("state").loc[fed_state]
+    better = "beats" if d.federated < d.centralized else "comes close to"
+    st.markdown(f'<div class="kv-callout">When <b>{ui.e(fed_state)}</b> joins with only {DATA_POOR_HISTORY} days of '
+                f'data, federated training cuts its forecast error from <b>{d.local_only:.0%}</b> (own data only) to '
+                f'<b style="color:{ui.ACCENT}">{d.federated:.0%}</b>, and {better} pooling all data centrally '
+                f'({d.centralized:.0%}) without any state sharing its records.</div>', unsafe_allow_html=True)
     c1, c2 = st.columns([3, 2], gap="large")
     with c1:
         cols = [("persistence", "No model", "#D6D0C2"), ("local_only", "Local data only", "#C8612F"),
@@ -414,7 +424,7 @@ with tabs[3]:
         ui.style_fig(fig, height=330, legend_top=False)
         fig.update_yaxes(tickformat=".0%", rangemode="tozero")
         fig.update_xaxes(showline=False, ticks="", tickfont=dict(color=ui.MUTED, size=12))
-        ui.section(f"{DATA_POOR_STATE}: forecast error by training approach")
+        ui.section(f"{fed_state}: forecast error by training approach")
         st.plotly_chart(fig, width="stretch", config={"displayModeBar": False})
     with c2:
         ui.section("All states, same test")
