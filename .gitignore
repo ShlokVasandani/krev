@@ -6,3 +6,4 @@ venv/
 .streamlit/secrets.toml
 .DS_Store
 *.log
+TEAM_PLAN.md
