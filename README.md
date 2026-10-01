@@ -49,4 +49,7 @@ override with `GEMINI_MODEL`.
 
 Numbers are from synthetic data. Say that first, before a judge asks.
 
-
+ Team Krev
+  - Shlok Vasandani: development
+  - Yakshi T: research, pitch deck
+  - Prisha M: research, pitch deck
