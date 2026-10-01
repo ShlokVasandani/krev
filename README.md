@@ -47,8 +47,6 @@ override with `GEMINI_MODEL`.
   outbreak day ≤5 and for isolated districts (Nagpur) — say so if asked
 - Federated cold-start (each state joins with 150 days): federated ≈ centralized, far better than local-only for every state
 
-Numbers are from synthetic data. Say that first, before a judge asks.
-
  Team Krev
   - Shlok Vasandani: development
   - Yakshi T: research, pitch deck
