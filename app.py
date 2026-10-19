@@ -28,7 +28,7 @@ from core.optimizer import escalations, recommend_transfers
 from core.security import KeyRegistry
 from core.simdata import DATA_POOR_HISTORY, DATA_POOR_STATE, T_NOW, Scenario, generate_world, outbreak_field
 
-st.set_page_config(page_title="Krev · Supply resilience", page_icon=":material/monitor_heart:", layout="wide")
+st.set_page_config(page_title="Krev · Supply resilience", page_icon=":material/monitor_heart:", layout="wide", initial_sidebar_state="expanded")
 ui.inject_css()
 
 

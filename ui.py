@@ -40,7 +40,8 @@ CSS = f"""
         --card:{CARD}; --page:{PAGE}; --accent:{ACCENT}; --nav:{NAV}; }}
 html, body, [class*="css"] {{ -webkit-font-smoothing: antialiased; }}
 [data-testid="stAppViewContainer"], .main {{ background: var(--page); }}
-[data-testid="stHeader"] {{ background: transparent; height: 0; }}
+[data-testid="stHeader"] {{ background: transparent; height: 2.5rem; }}
+[data-testid="stExpandSidebarButton"], [data-testid="stSidebarCollapsedControl"] {{ display: flex !important; visibility: visible !important; z-index: 1000; }}
 [data-testid="stToolbar"], [data-testid="stDecoration"], [data-testid="stStatusWidget"] {{ display: none !important; }}
 .block-container {{ padding-top: 1.4rem; padding-bottom: 3rem; max-width: 1480px; }}
 [data-testid="stSidebarContent"] {{ padding-top: 0.4rem; }}
